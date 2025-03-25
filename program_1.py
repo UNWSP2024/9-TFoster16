@@ -1,16 +1,42 @@
-# Program #1: Item Counter
-# Assume a file containing a series of names (as strings) is named names.txt 
-# (Use the included example file names.txt) and exists on the computer's disk.
-# Write a program that displays the number of names that are stored in the file.
+#Timothy Foster, 3/24/25, Item Counter Program
 
+#Define the function.
 def count_file_lines():
-    ######################
-    # Add your code here #
-    ######################
-    print('In the count_file_lines function')
 
+    #Duplicate the contents of the file to a variable.
+    with open('names.txt', 'r') as file:
+        names = " ".join(line.rstrip() for line in file)
 
+    #Get the number of characters in the file.
+    file_length = len(names)
 
-# You don't need to change anything below this line:
+    #Define the variable to keep track of the number of names.
+    number_of_names = 0
+
+    #Use a for loop to check each character in the file.
+    for counter in range(file_length):
+
+        #Assign the character to a new variable.
+        character = names[counter]
+
+        #Check if the character is a letter.
+        if character.isalpha() == True:
+
+            #Check if it's the last character of the file.
+            if counter == file_length:
+
+                #Add to the total.
+                number_of_names += 1
+
+            #Check if there's a space before the letter or if it's the first character of the file.
+            elif names[counter - 1] == " " or counter == 0:
+
+                #Add to the total.
+                number_of_names += 1
+
+    #Print the results.
+    print(f"There are {number_of_names} names in the names.txt file.")
+
+#Call the above function.
 if __name__ == '__main__':
     count_file_lines()
